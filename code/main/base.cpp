@@ -207,19 +207,19 @@ void base::Submit_Callback(void)
 	}
 	else
 	{
-		this->outSetTempMax = obj["outSetTempMax"].as < String > ();
-		this->setTempMax = obj["setTempMax"].as < String > ();
-		this->outTreshold = obj["outTreshold"].as < String > ();
-		this->allow = obj["allow"].as < String > ();
 		this->version = obj["version"].as < String > ();
+		this->allow = obj["allow"].as < String > ();
+		this->outSetTempMax = obj["outSetTempMax"].as < String > ();
+		this->outCalibrate = obj["outCalibrate"].as < String > ();
+		this->outTreshold = obj["outTreshold"].as < String > ();
+		this->temp = obj["temp"].as < String > ();
+		this->setTempMax = obj["setTempMax"].as < String > ();
+		this->treshold = obj["treshold"].as < String > ();
 		this->calibrate = obj["calibrate"].as < String > ();
 		this->setTempMin = obj["setTempMin"].as < String > ();
 		this->status = obj["status"].as < String > ();
-		this->treshold = obj["treshold"].as < String > ();
-		this->headline = obj["headline"].as < String > ();
-		this->outCalibrate = obj["outCalibrate"].as < String > ();
-		this->temp = obj["temp"].as < String > ();
 		this->outSetTempMin = obj["outSetTempMin"].as < String > ();
+		this->headline = obj["headline"].as < String > ();
 
 	}
 	if (NULL != this->Submit_UserCallback)
@@ -228,32 +228,14 @@ void base::Submit_Callback(void)
 	}
 }
 
-void base::Set_outSetTempMax (String value)
+void base::Set_version (String value)
 {
-	this->outSetTempMax = value;
+	this->version = value;
 }
 
-String base::Get_outSetTempMax ( void )
+String base::Get_version ( void )
 {
-	return this->outSetTempMax;
-}
-void base::Set_setTempMax (String value)
-{
-	this->setTempMax = value;
-}
-
-String base::Get_setTempMax ( void )
-{
-	return this->setTempMax;
-}
-void base::Set_outTreshold (String value)
-{
-	this->outTreshold = value;
-}
-
-String base::Get_outTreshold ( void )
-{
-	return this->outTreshold;
+	return this->version;
 }
 void base::Set_allow (String value)
 {
@@ -264,14 +246,59 @@ String base::Get_allow ( void )
 {
 	return this->allow;
 }
-void base::Set_version (String value)
+void base::Set_outSetTempMax (String value)
 {
-	this->version = value;
+	this->outSetTempMax = value;
 }
 
-String base::Get_version ( void )
+String base::Get_outSetTempMax ( void )
 {
-	return this->version;
+	return this->outSetTempMax;
+}
+void base::Set_outCalibrate (String value)
+{
+	this->outCalibrate = value;
+}
+
+String base::Get_outCalibrate ( void )
+{
+	return this->outCalibrate;
+}
+void base::Set_outTreshold (String value)
+{
+	this->outTreshold = value;
+}
+
+String base::Get_outTreshold ( void )
+{
+	return this->outTreshold;
+}
+void base::Set_temp (String value)
+{
+	this->temp = value;
+}
+
+String base::Get_temp ( void )
+{
+	return this->temp;
+}
+void base::Set_setTempMax (String value)
+{
+	this->setTempMax = value;
+}
+
+String base::Get_setTempMax ( void )
+{
+	return this->setTempMax;
+}
+void base::Set_treshold (String value)
+{
+	this->treshold = value;
+}
+
+String base::Get_treshold ( void )
+{
+	return this->treshold;
 }
 void base::Set_calibrate (String value)
 {
@@ -300,14 +327,14 @@ String base::Get_status ( void )
 {
 	return this->status;
 }
-void base::Set_treshold (String value)
+void base::Set_outSetTempMin (String value)
 {
-	this->treshold = value;
+	this->outSetTempMin = value;
 }
 
-String base::Get_treshold ( void )
+String base::Get_outSetTempMin ( void )
 {
-	return this->treshold;
+	return this->outSetTempMin;
 }
 void base::Set_headline (String value)
 {
@@ -318,39 +345,12 @@ String base::Get_headline ( void )
 {
 	return this->headline;
 }
-void base::Set_outCalibrate (String value)
-{
-	this->outCalibrate = value;
-}
-
-String base::Get_outCalibrate ( void )
-{
-	return this->outCalibrate;
-}
-void base::Set_temp (String value)
-{
-	this->temp = value;
-}
-
-String base::Get_temp ( void )
-{
-	return this->temp;
-}
-void base::Set_outSetTempMin (String value)
-{
-	this->outSetTempMin = value;
-}
-
-String base::Get_outSetTempMin ( void )
-{
-	return this->outSetTempMin;
-}
 void base::Render( void )
 {
-	this->server->send( 200, base_text);
+	this->server->send( 200, "text/html", base_text);
 }
 void base::GetAjaxValues( void )
 {
-	String message = "outSetTempMax:" + this->outSetTempMax + ";setTempMax:" + this->setTempMax + ";outTreshold:" + this->outTreshold + ";allow:" + this->allow + ";version:" + this->version + ";calibrate:" + this->calibrate + ";setTempMin:" + this->setTempMin + ";status:" + this->status + ";treshold:" + this->treshold + ";headline:" + this->headline + ";outCalibrate:" + this->outCalibrate + ";temp:" + this->temp + ";outSetTempMin:" + this->outSetTempMin;
+	String message = "version:" + this->version + ";allow:" + this->allow + ";outSetTempMax:" + this->outSetTempMax + ";outCalibrate:" + this->outCalibrate + ";outTreshold:" + this->outTreshold + ";temp:" + this->temp + ";setTempMax:" + this->setTempMax + ";treshold:" + this->treshold + ";calibrate:" + this->calibrate + ";setTempMin:" + this->setTempMin + ";status:" + this->status + ";outSetTempMin:" + this->outSetTempMin + ";headline:" + this->headline;
 	this->server->send(200, "text/plain", message);
 }

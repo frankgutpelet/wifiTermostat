@@ -72,7 +72,7 @@ def printClass(side):
         source.write("void " + side.name + "::Set_" + variable + " (String value)\n{\n\tthis->" + variable + " = value;\n}\n\n")
         source.write("String " + side.name + "::Get_" + variable + " ( void )\n{\n\treturn this->" + variable + ";\n}\n")
     source.write("void " + side.name + "::Render( void )\n{\n")
-    source.write("\tthis->server->send( 200, " + side.name + "_text);\n")
+    source.write("\tthis->server->send( 200, \"text/html\", " + side.name + "_text);\n")
     source.write("}\n")
     source.write("void " + side.name + "::GetAjaxValues( void )\n{\n")
     line = "\tString message = \""
@@ -100,7 +100,7 @@ def parseHtml(filename):
 
     for line in html:
 
-        match = re.search('\t\t\"([^\"]+)\"\s:\s\"dynamic\"', line)
+        match = re.search('\"([^\"]+)\"\s:\s\"dynamic\"', line)
         if (None != match):
             side.vars.append(match.groups()[0])
             line = line.replace("\n", "")
